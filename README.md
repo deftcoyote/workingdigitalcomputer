@@ -1,4 +1,4 @@
-# workingdigitalcomputer
+# A Working Digital Computer Emulator #
 A simple software version of the Comspace/Arkay CT-650, or paperclip computer
 
 This is a simple web page version of the famous paperclip computer. It was originally described in the 1968 book "How to Build a Working Digital Computer" by Edward Alcosser, James P. Phillips, and Allen M. Wolk.
