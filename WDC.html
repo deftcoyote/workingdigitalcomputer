@@ -1,0 +1,341 @@
+<!--
+Project: Working Digital Computer, Paperclip Computer, Comspace 650
+Author: TW
+Description: Webpage frontend for using the emulator
+-->
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<script type="text/javascript" src="WDCCem.js"></script>
+<script type="text/javascript" src="WDCFuncs.js"></script>
+<!--<script type="text/javascript" src="3BCasm.js"></script>-->
+
+
+<link rel="stylesheet" type="text/css" href="WDC.css">
+
+
+</head>
+
+<body>
+<!--<div>
+to make a toggle switch
+https://www.w3schools.com/howto/howto_css_switch.asp
+https://bashooka.com/coding/pure-css-toggle-switches/
+</div>-->
+A Working Digital Computer
+<form name="wdcf" action="#">
+
+<div id="encarea">  
+<h3>Input</h3>
+
+Input A: <select id="core" name="enca">
+    <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+</select> 
+<br/>
+Input B: <select id="core" name="encb">
+    <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+</select> 
+<p/>
+<table class="tab">
+        <tr>
+        <td>Encoder A</td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td></tr>
+        <tr>
+        <td>Encoder B</td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td>
+    <td><div class="led"></div></td></tr>
+    </table>
+    </td></tr>
+ </table>
+</div>
+
+<div id="memarea">  
+<h3>Core</h3>
+<label for="core">Select Core:</label>
+
+<select id="core" onchange="UpdateCore(this)">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+</select> 
+<p/>
+<table class="mem" align="center">
+    <tr><td></td>
+    <td><div class="led" id="ledC1"></div></td>
+    <td><div class="led" id="ledC2"></div></td>
+    <td><div class="led" id="ledC3"></div></td>
+    <td><div class="led" id="ledC4"></div></td></tr>
+    <tr><td>1</td>
+        <td><input name="C11" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C12" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C13" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C14" type="checkbox" value="0" onclick="">
+        </td></tr>
+    <tr><td>2</td>
+        <td><input name="C21" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C22" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C23" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C24" type="checkbox" value="0" onclick="">
+            </td></tr>
+    <tr><td>3</td>
+        <td><input name="C31" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C32" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C33" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C34" type="checkbox" value="0" onclick="">
+        </td></tr>
+    <tr><td>4</td>
+        <td><input name="C41" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C42" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C43" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C44" type="checkbox" value="0" onclick="">
+    </td></tr>
+    <tr><td>5</td>
+        <td><input name="C51" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C52" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C53" type="checkbox" value="0" onclick=""></td>
+            <td><input name="C54" type="checkbox" value="0" onclick=""></td></tr>
+</table>
+</div>       
+
+<div id="cpuarea">   
+<h3>ALU</h3>
+Function Selector
+<select id="func">
+  <option value="DISPLAY">DISPLAY</option>
+  <option value="ADD">ADD</option>
+  <option value="SUB">SUB</option>
+  <option value="TRA">TRA</option>
+  <option value="ORA">ORA</option>
+  <option value="XOR">XOR</option>
+  <option value="AND">AND</option>
+  <option value="INV">INV</option>
+  <option value="NOP">NOP</option>
+</select> 
+<p/>
+<table class="tab" align="center">
+        <tr>
+            <td>Sign</td><td colspan="4">Accumulator</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+        <tr>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+        </tr>
+        
+        <tr>
+            <td></td><td colspan="4">Extension(E) Register</td>
+        </tr><tr>
+            <td></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+         <tr>
+            <td></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+        </tr>
+        <tr>
+            <td></td><td colspan="4">X Register</td>
+        </tr><tr>
+            <td></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+         <tr>
+            <td></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+            <td><input name="" type="checkbox" value="0" onclick=""></td>
+        </tr>
+</table>
+</div>   
+
+<div id="controlarea">   
+<h3>Control Area</h3>
+    <table class="tab" align="center">
+        <tr>
+            <td>ADD</td><td>SUB</td><td>TRA</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr><tr>
+            <td>ORA</td><td>XOR</td><td>AND</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr><tr>
+            <td>INV</td><td>NOP</td><td>ANS</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+    </table>
+<p/>    
+    <table class="tab" align="center">
+        <tr>
+            <td colspan="3">RIN</td><td colspan="3">STO</td><td></td>
+        </tr><tr>
+            <td colspan="3"><div class="led"></div></td><td colspan="3"><div class="led"></div></td><td></td>
+        </tr><tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C1</td>
+            <td>C2</td>
+            <td>C3</td>
+            <td>C4</td>
+            <td>C5</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+    </table>
+
+<p/>    
+    <table class="tab" align="center">
+        <tr>
+            <td>SHL</td><td>SHR</td><td>COJ</td><td>JMP</td><td>ENJ</td><td colspan="2">RUT</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td colspan="2"><div class="led"></div></td>
+        </tr><tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td></td>
+            <td>10s</td>
+            <td>1s</td>
+        </tr><tr>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+            <td></td>
+            <td><div class="led"></div></td>
+            <td><div class="led"></div></td>
+        </tr>
+    </table>
+</div>   
+
+<div id="outputarea">   
+<h3>Output</h3>
+<table class="mem" align="center" style="float:none;">
+        <tr><td>10^1</td>
+            <td><input name="OA1" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OA2" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OA3" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OA4" type="checkbox" value="0" onclick="UpdateOutput()">
+            </td></tr>
+        <tr><td>10^0</td>
+            <td><input name="OB1" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OB2" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OB3" type="checkbox" value="0" onclick="UpdateOutput()"></td>
+                <td><input name="OB4" type="checkbox" value="0" onclick="UpdateOutput()">
+                </td></tr>
+    </table>
+<p/>
+    <table cellpadding="1" class="tab" style="float:none;width:100px;" align="center">
+        <tr><td><div class="ledon" id="ledA0"></div></td><td>0</td><td><div class="ledon" id="ledB0"></div></td></tr>
+        <tr><td><div class="led" id="ledA1"></div></td><td>1</td><td><div class="led" id="ledB1"></div></td></tr>
+        <tr><td><div class="led" id="ledA2"></div></td><td>2</td><td><div class="led" id="ledB2"></div></td></tr>
+        <tr><td><div class="led" id="ledA3"></div></td><td>3</td><td><div class="led" id="ledB3"></div></td></tr>
+        <tr><td><div class="led" id="ledA4"></div></td><td>4</td><td><div class="led" id="ledB4"></div></td></tr>
+        <tr><td><div class="led" id="ledA5"></div></td><td>5</td><td><div class="led" id="ledB5"></div></td></tr>
+        <tr><td><div class="led" id="ledA6"></div></td><td>6</td><td><div class="led" id="ledB6"></div></td></tr>
+        <tr><td><div class="led" id="ledA7"></div></td><td>7</td><td><div class="led" id="ledB7"></div></td></tr>
+        <tr><td><div class="led" id="ledA8"></div></td><td>8</td><td><div class="led" id="ledB8"></div></td></tr>
+        <tr><td><div class="led" id="ledA9"></div></td><td>9</td><td><div class="led" id="ledB9"></div></td></tr>
+    </table>
+
+</div>   
+
+<div id="progarea">   
+<h3>Programming Area</h3>
+<p/>
+<!--<input name="loadbtn" type="button" value="Load">-->
+<textarea rows="20" cols="50" name="prog" id="prog">
+</textarea>
+</div>  
+
+<div id="drumarea">   
+<h3>Drum</h3>
+<p/>
+<!--<input name="loadbtn" type="button" value="Load">-->
+<textarea rows="20" cols="20" name="drum" id="drum">
+</textarea>
+</div>  
+
+<div id="wdcarea">   
+<h3>WDC Area</h3>
+<table>
+    <tr><td>Reset</td><td><input name="resetbtn" type="button" value="Reset" onclick="ResetAll();"></td></tr>
+    <tr><td>Load</td><td><input name="loadbtn" type="button" value="Load" onclick="LoadProgram();"></td></tr>
+    <tr><td>Step</td><td><input name="stepbtn" type="button" value="Step" onclick="StepProgram();"></td></tr>
+</table>
+automatic checkbox
+<input name="autostep" type="checkbox" value="0" onclick="">
+</div> 
+
+
+
+</form>
+
+
+
+
+</body>
+</html>
